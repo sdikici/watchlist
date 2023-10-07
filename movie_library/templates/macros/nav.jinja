@@ -1,0 +1,34 @@
+{% macro header(email, theme) %}
+<header class="header">
+    <div class="nav-container">
+        <a href="{{ url_for('pages.index') }}" class="header__logo">
+            <img class="logo__icon" src="{{ url_for('static', filename='img/movie.svg') }}" alt="Movie Icon">
+            <span class="logo__name">Watchlist</span>
+        </a>
+        <nav class="nav">
+
+            {% if not email %}
+            <a href="{{ url_for('pages.login') }}"
+                class="nav__link {{ 'nav__link--active' if request.path == url_for('pages.login') }}">
+                <span class="nav__item">Log in</span>
+            </a>
+            <a href="{{ url_for('pages.register') }}"
+                class="nav__link {{ 'nav__link--active' if request.path == url_for('pages.register') }}">
+                <span class="nav__item">Register</span>
+            </a>
+
+            {% else %}
+
+            <a href="{{ url_for('pages.index') }}"
+                class="nav__link {{ 'nav__link--active' if request.path == url_for('pages.index') }}">
+                <span class="nav__item">Movies</span>
+            </a>
+            <a href="{{ url_for('pages.logout') }}" class="nav__link">
+                <span class="nav__item">Log out</span>
+            </a>
+
+            {% endif %}
+        </nav>
+    </div>
+</header>
+{% endmacro %}
