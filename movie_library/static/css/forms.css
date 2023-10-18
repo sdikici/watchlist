@@ -1,0 +1,315 @@
+.form {
+    margin: 0 auto;
+    max-width: 30rem;
+    border: var(--border);
+    font-size: 1.2rem;
+  
+    /* An explicit background is required here, as it's actually transparent by default, and we
+         don't want to see the shadow element behind */
+    background: var(--background-color);
+  
+    /* This shadow is separated from the edges by 0.75rem, and shrunk by 0.2rem on the
+    top and bottom. */
+    box-shadow: 0.75rem 0.75rem 0 -0.2rem var(--accent-color);
+  }
+  
+  .form__container {
+    padding: 2.5rem 1.5rem 1.5rem 1.5rem;
+  }
+
+  .form__container--search {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    text-decoration: none;
+    color: #000;
+    justify-content: flex-end;
+    font-weight: 600;
+  }
+
+.search {
+  height: 2.5rem;
+  width: 2.5rem;
+}
+
+.form__container--search:hover {
+  color: var(--accent-color);
+}
+
+  @media screen and (min-width: 24.75em) {
+    .form__container {
+      padding-left: 2rem;
+    }
+  }
+  
+  @media screen and (min-width: 30em) {
+    .form__container {
+      padding-left: 2.5rem;
+    }
+  }
+  
+  .form__group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.5rem;
+  }
+  
+  .form__label {
+    margin-bottom: 0.5rem;
+  }
+  
+  .form__field {
+    outline: none;
+    border: none;
+  
+    border-bottom: 3px solid #fff;
+  
+    font-size: inherit;
+    font-family: inherit;
+  
+    padding: 0.75rem 0.5rem;
+    background: var(--background-color);
+  }
+  
+  .form__field:focus {
+    border-bottom: var(--border);
+  }
+  
+  .form__small {
+    font-size: 0.83rem;
+    color: var(--text-muted);
+  }
+  
+  .form__link {
+    text-decoration: none;
+    color: var(--accent-color);
+  }
+  
+  .form__link:hover {
+    color: #d05656;
+  }
+  
+  .form__error {
+    margin-top: 0.5rem;
+  }
+  
+  .form__error,
+  .form__flash {
+    display: block;
+    padding: 0.5rem;
+    color: #fff;
+    font-size: 15px;
+  }
+  
+  .form__error,
+  .form__flash--danger {
+    background: var(--accent-color);
+  }
+  
+  .form__flash {
+    margin: 0.5rem;
+  }
+  
+  .form__flash--success {
+    background: var(--accent-color-2);
+    color: #fff;
+  }
+  
+  .button--form {
+    margin: 2rem 0 0 auto;
+    padding: 0.75rem 3rem;
+    border: none;
+    background: var(--background-color);
+  }
+  
+  .button--form:hover {
+    background: var(--background-color-hover);
+  }
+
+
+.form__group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.5rem;
+}
+
+.form__label {
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+.form__field {
+    font-size: inherit;
+    font-family:inherit;
+    padding: 0.75rem 0.5rem;
+}
+
+.form__field:focus {
+    border-bottom: var(--border);
+}
+
+.dbsearch_noresult {
+  display: block;
+  padding: 0.5rem;
+  color: #fff;
+  font-size: 15px;
+  background: var(--accent-color);
+  margin-top: 1rem;
+}
+
+.dbsearch__label {
+  margin-bottom: 0.5rem;
+}
+
+.db_container {
+  margin: 0 auto;
+  max-width: 60rem;
+  border: var(--border);
+  font-size: 1.2rem;
+
+  /* An explicit background is required here, as it's actually transparent by default, and we
+       don't want to see the shadow element behind */
+  background: var(--background-color);
+
+  /* This shadow is separated from the edges by 0.75rem, and shrunk by 0.2rem on the
+  top and bottom. */
+  box-shadow: 0.75rem 0.75rem 0 -0.2rem var(--accent-color);
+  padding: 2.5rem 1.5rem 1.5rem 1.5rem;
+}
+
+.dbtitle {
+  font-size: 24px;
+  font-family: inherit;
+    display: flex;
+    align-items: left;
+    justify-content: left;
+    margin-bottom: 1rem;;
+}
+
+
+.dbsearch__label {
+  font-family: inherit;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.dbform_field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.5rem;
+  outline: none;
+  border: none;
+
+  font-size: inherit;
+  font-family: inherit;
+
+  padding: 0.75rem 0.5rem;
+  background: #e8e5e5;
+  width: 100%;
+}
+
+.dbform_field:focus {
+  border-bottom: 3px solid #942525;
+}
+
+.dbsearch_button {
+  display: flex;
+  margin: 0.5rem 0 0 auto;
+  padding: 0.75rem 3rem;
+  border: none;
+  background: #e2e8f0;
+  font: inherit;
+  cursor: pointer;
+}
+
+.dbsearch_button:hover {
+  background: #bdd1eb;
+}
+
+.dbselect_button {
+  margin: 1rem 0 0 auto;
+  padding: 0.75rem 3rem;
+  border: none;
+  background: #e2e8f0;
+  font: inherit;
+  cursor: pointer;
+}
+
+.dbselect_button:hover {
+  background: #bdd1eb;
+}
+
+.movie_container {
+  display: grid;
+  grid-template-columns: 1rem 40rem auto;
+  gap: 1rem;
+  align-items: center;
+  border: 3px solid #942525;
+  border-radius: 6px;
+  margin-top: 1rem;
+  height: 122.71px;
+}
+
+.movie_name {
+  margin-bottom: 0.5rem; /* Adjust margin as needed */
+}
+
+.movie_img {
+  width: 160px; /* Set the desired width for the image */
+  height: auto; /* Maintain aspect ratio */
+  margin: 1rem 0 1rem 0; 
+  justify-content: center;
+  align-items: center;
+}
+
+.movie_label {
+  align-items: center;
+  cursor: pointer;
+}
+
+.movie_info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+
+.movie_details {
+  display: flex;
+  flex-direction: row;
+}
+
+.movie_details p {
+  margin-right: 1rem; 
+}
+
+
+.movie_selection {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.select_movie {
+  appearance: none; /* Remove default appearance */
+  -webkit-appearance: none; /* Remove default appearance for WebKit browsers */
+  -moz-appearance: none; /* Remove default appearance for Mozilla browsers */
+  width: 15px; 
+  height: 15px; 
+  border: 2px solid #942525; 
+  border-radius: 4px; 
+  margin-left: 10px; 
+  cursor: pointer;
+}
+
+/* Style the radio button when checked */
+.select_movie:checked {
+  background-color: black; /* Add background color when checked */
+}
+
+ul {
+  list-style: none;
+}
+

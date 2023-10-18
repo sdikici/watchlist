@@ -1,0 +1,76 @@
+{% from "macros/fields.jinja" import render_text_field, render_area_field %}
+
+{% extends "layouts.jinja" %}
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<div class="alert alert-success">
+    {{ messages[0] }}
+</div>
+{% endif %}
+{% endwith %}
+
+{%- block head_content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/forms.css') }}" />
+{% endblock %}
+
+{% block main_content %}
+<div class="db_container">
+    <h1 class="dbtitle">{{ title }}</h1>
+
+    <form class="dbsearch" method="post" action="{{ url_for('pages.search_movies') }}">
+        <input class="dbform_field" type="text" id="search_query" name="search_query"
+            placeholder="Please enter a movie name">
+        <button class="dbsearch_button" type="submit">Search</button>
+    </form>
+
+    {% if search_results %}
+    <form class="dbsearch" name="add_movie" method="post" novalidate class="form"
+        action="{{ url_for('pages.select_movie') }}">
+
+        <ul>
+            {% for movie in search_results %}
+            <li>
+                <div class="movie_container">
+                    <input class="select_movie" type="checkbox" id="movie_{{ movie['ID'] }}" name="selected_movie"
+                        value="{{ movie['ID'] }}">
+                    <div class="movie_selection">
+                        <label class="movie_label" for="movie_{{ movie['ID'] }}">
+                            <div class="movie_info">
+                                <h3 class="movie_name">{{ movie['name'] }}</h3>
+                                <div class="movie_details">
+                                    <p class="year"><strong>Year:</strong> {{ movie['year'] }}</p>
+                                    <p class="director"><strong>Director:</strong> {{ movie['director'] }}</p>
+                                    <p class="tags"><strong>Tags:</strong> {{ movie['tag']|safe }}</p>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+
+                    {% if movie['image_Link'] and not movie['image_Link'].endswith('N/A') %}
+                    <img class="movie_img" src="{{ movie['image_Link'] }}" alt="{{ movie['name'] }} Image">
+                    {% else %}
+                    <p class="notaval">No img available</p>
+                    {% endif %}
+                </div>
+            </li>
+
+            {% endfor %}
+        </ul>
+
+        <button class="dbselect_button" type="submit">Add Movie</button>
+    </form>
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <div class="alert alert-success">
+        {{ messages[0] }}
+    </div>
+    {% endif %}
+    {% endwith %}
+    {% elif search_query %}
+    <p class="dbsearch_noresult">No results found for '{{ search_query }}'.</p>
+    {% endif %}
+</div>
+
+{% endblock main_content %}
