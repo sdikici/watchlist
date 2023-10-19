@@ -177,6 +177,7 @@
   padding: 2.5rem 1.5rem 1.5rem 1.5rem;
 }
 
+
 .dbtitle {
   font-size: 24px;
   font-family: inherit;
@@ -184,6 +185,18 @@
     align-items: left;
     justify-content: left;
     margin-bottom: 1rem;;
+}
+
+@media screen and (min-width: 24.75em) {
+  .dbtitle {
+    font-size: 1.25rem;
+  }
+}
+
+@media screen and (min-width: 30em) {
+  .dbtitle {
+    font-size: 1.125rem;
+  }
 }
 
 
@@ -279,6 +292,12 @@
 .movie_details {
   display: flex;
   flex-direction: row;
+}
+
+@media screen and (max-width: 30em) {
+  .movie_details {
+    flex-direction: column;
+  }
 }
 
 .movie_details p {
