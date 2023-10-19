@@ -277,6 +277,12 @@
   align-items: center;
 }
 
+@media screen and (max-width: 30em) {
+.movie_img, .notaval{
+    display: none;
+  }
+}
+
 .movie_label {
   align-items: center;
   cursor: pointer;
