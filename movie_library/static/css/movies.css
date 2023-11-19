@@ -1,5 +1,5 @@
 .button--add{
-    position: absolute;
+    position: fixed;
     bottom: 4rem;
     right: 2rem;
     display: flex;
@@ -15,10 +15,22 @@
     justify-content: center;
     }
 
+    @media screen and (max-width: 45em) {
+      .button--add {
+        position: absolute;
+        top: 6rem;
+        height: 3.5rem;
+        width: 3.5rem;
+        font-size: 1.75rem;
+      }
+    }
+
 .button--add:hover {
     color: #fff;
     background-color: var(--accent-color);
 }
+
+
 
 .table {
     max-width: 50rem;

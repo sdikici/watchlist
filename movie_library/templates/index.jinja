@@ -27,7 +27,12 @@
         <tr>
             <td class="table__cell">
                 <p class="table__movietitle">{{ movie.title }}</p>
-                <p class="table__moviedirector">{{ movie.director }}</p>
+                {% if movie.director %}
+                <p class="table__moviedirector">By: {{ movie.director }}</p>
+                {% endif %}
+                {% if movie.tag1 %}
+                <p class="table__moviedirector">Genre: {{ movie.tag1 }} {{ movie.tag2 }}</p>
+                {% endif %}
             </td>
             <td class="table__cell">{{ movie.year }}</td>
             <td class="table__cell"><a href="{{url_for('pages.movie', _id=movie._id)}}" class="table__link">View</a>
@@ -44,7 +49,7 @@
 
 {% endif %}
 
-<a class="buttob button--add" href="{{url_for('pages.add_movie')}}"><span>+</span></a>
+<a class="button button--add" href="{{url_for('pages.add_movie')}}"><span>+</span></a>
 
 
 {% endblock %}

@@ -44,14 +44,11 @@
         </div>
         <div class="header__row">
             <ul class="movie__tags">
-                {% if movie.tags is string %}
-                {% for tag in movie.tags.split() %}
-                <li class="movie__tag">{{ tag }}</li>
-                {% endfor %}
-                {% elif movie.tags is iterable and movie.tags is not string %}
-                {% for tag in movie.tags %}
-                <li class="movie__tag">{{ tag }}</li>
-                {% endfor %}
+                {% if movie.tag1 %}
+                <li class="movie__tag">{{ movie.tag1 }}</li>
+                {% endif %}
+                {% if movie.tag2 %}
+                <li class="movie__tag">{{ movie.tag2 }}</li>
                 {% endif %}
             </ul>
         </div>

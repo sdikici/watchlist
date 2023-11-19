@@ -97,6 +97,13 @@ height: 3.5rem;
   font-size: 20px;
 }
 
+@media screen and (max-width: 30em) {
+  .logo__name {
+    margin-left: 0;
+    font-size: 16px;
+  }
+}
+
 .nav-container {
   display: flex;
   justify-content: space-between;

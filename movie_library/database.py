@@ -2,12 +2,15 @@ import requests
 import os
 
 
+# Class for interacting with The Movie Database (TMDb) API
 class MovieDB:
     def __init__(self, api_key):
+        # Constructor to initialize the API key and base URL
         self.api_key = api_key
         self.base_url = "https://api.themoviedb.org/3/"
 
     def get_movie_details(self, movie_id):
+        # Get details of a specific movie by ID
         endpoint = f"/movie/{movie_id}"
         params = {"api_key": self.api_key}
 
@@ -17,6 +20,7 @@ class MovieDB:
         return data
 
     def search_movie(self, query):
+        # Search for movies based on a query
         endpoint = "/search/movie"
         params = {"api_key": self.api_key, "query": query}
 
@@ -26,6 +30,7 @@ class MovieDB:
         return data.get("results", [])
 
     def get_movie_credits(self, movie_id):
+        # Get credits information for a specific movie by ID
         endpoint = f"/movie/{movie_id}/credits"
         params = {"api_key": self.api_key}
 
@@ -35,6 +40,7 @@ class MovieDB:
         return data
 
     def get_movie_video(self, movie_id):
+        # Get video information for a specific movie by ID
         endpoint = f"/movie/{movie_id}/videos"
         params = {"api_key": self.api_key}
 
@@ -44,6 +50,7 @@ class MovieDB:
         return data
 
     def get_movie_image(self, movie_id):
+        # Get image information for a specific movie by ID
         endpoint = f"/movie/{movie_id}/images"
         params = {"api_key": self.api_key}
 
@@ -53,6 +60,7 @@ class MovieDB:
         return data
 
     def get_movie_tag(self, movie_id):
+        # Get tag information for a specific movie by ID
         endpoint = f"/movie/{movie_id}"
         params = {"api_key": self.api_key}
 
@@ -62,6 +70,7 @@ class MovieDB:
         return data
 
     def extract_director_from_credits(self, credits_info):
+        # Extract the director's name from the credits information
         director = ""
         if "crew" in credits_info:
             crew = credits_info["crew"]
@@ -75,6 +84,7 @@ class MovieDB:
         return director
 
     def extract_movie_details(self, movie_info, credits_info):
+        # Extract relevant movie details from the movie and credits information
         movid = movie_info.get("id")
         title = movie_info.get("title", "")
         release_date = movie_info.get("release_date", "")
@@ -96,6 +106,7 @@ class MovieDB:
         return movie_details
 
     def search_and_return_movie_details(self, query):
+        # Search for movies based on a query and return detailed information
         movie_list = []
 
         search_results = self.search_movie(query)
@@ -107,9 +118,16 @@ class MovieDB:
             movie_details = self.extract_movie_details(result, credits_info)
 
             video_info = self.get_movie_video(movie_id)
-            video_key = (
-                video_info["results"][0]["key"] if video_info.get("results") else "N/A"
+            # video_key = (video_info["results"][0]["key"] if video_info.get("results") else "N/A")
+            video_key = next(
+                (
+                    item["key"]
+                    for item in video_info.get("results", [])
+                    if item.get("type") == "Trailer"
+                ),
+                "N/A",
             )
+
             movie_details["YouTube_Link"] = f"https://www.youtube.com/embed/{video_key}"
 
             image_info = self.get_movie_image(movie_id)
@@ -128,7 +146,8 @@ class MovieDB:
                 else ""
             )
 
-            movie_details["tag"] = f"{tag_key1} {tag_key2}"
+            movie_details["tag1"] = f"{tag_key1}"
+            movie_details["tag2"] = f"{tag_key2}"
 
             movie_list.append(movie_details)
         sorted_movies = sorted(
@@ -140,6 +159,7 @@ class MovieDB:
         return sorted_movies
 
     def search_and_return_movie_details_by_id(self, movie_id):
+        # Search for a specific movie by ID and return detailed information
         movie_list = []
 
         # Fetch details of the selected movie using the MovieDB class
@@ -148,9 +168,16 @@ class MovieDB:
         movie_details = self.extract_movie_details(result, credits_info)
 
         video_info = self.get_movie_video(movie_id)
-        video_key = (
-            video_info["results"][0]["key"] if video_info.get("results") else "N/A"
+        # video_key = (video_info["results"][0]["key"] if video_info.get("results") else "N/A")
+        video_key = next(
+            (
+                item["key"]
+                for item in video_info.get("results", [])
+                if item.get("type") == "Trailer"
+            ),
+            "N/A",
         )
+
         movie_details["YouTube_Link"] = f"https://www.youtube.com/embed/{video_key}"
 
         image_info = self.get_movie_image(movie_id)
@@ -169,7 +196,8 @@ class MovieDB:
             else ""
         )
 
-        movie_details["tag"] = f"{tag_key1} {tag_key2}"
+        movie_details["tag1"] = f"{tag_key1}"
+        movie_details["tag2"] = f"{tag_key2}"
 
         movie_list.append(movie_details)
 

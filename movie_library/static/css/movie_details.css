@@ -18,20 +18,32 @@
 .movie__name {
     display: flex;
     align-items: center;
+    max-width: 100%;
   }
 
   @media screen and (max-width: 30em) {
     .movie__name {
       flex-direction: column;
-      font-size: 1rem;
-      align-items: left
+      font-size: 0.7rem;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+      text-overflow: ellipsis;
     }
   }
-  
-.movie__rating {
+
+  .movie__rating {
     margin-left: 1rem;
+    margin-right: 1rem;
     display: flex;
 
+  }
+
+  @media screen and (max-width: 30em) {
+     .movie__rating {
+      margin-top: 0.5rem;
+      margin-left: 0;
+      align-items: flex-start;
+    }
   }
 
 .rating__link {
@@ -41,9 +53,11 @@
   color: unset;
 }
 
+
 .rating__link:not(:first-of-type) {
   margin-left: 2px;
 }
+
 
 .star {
   width: 1.5em;

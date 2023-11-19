@@ -3,7 +3,6 @@ from wtforms import (
     IntegerField,
     StringField,
     SubmitField,
-    TextAreaField,
     URLField,
     PasswordField,
 )
@@ -11,9 +10,12 @@ from wtforms.validators import InputRequired, NumberRange, Email, Length, EqualT
 
 
 class MovieForm(FlaskForm):
+    # Form for adding movies to the watchlist
     title = StringField("Title", validators=[InputRequired()])
 
     director = StringField("Director")
+    tag1 = StringField("Tag1")
+    tag2 = StringField("Tag2")
 
     year = IntegerField(
         "Year",
@@ -30,10 +32,10 @@ class MovieForm(FlaskForm):
     submit = SubmitField("Add Movie")
 
 
-class StringListField(TextAreaField):
+class StringListField(StringField):
     def _value(self):
         if self.data:
-            return "\n".join(self.data)
+            return "".join(filter(None, self.data))
         else:
             return ""
 
@@ -45,13 +47,13 @@ class StringListField(TextAreaField):
 
 
 class Extension(MovieForm):
-    tags = StringListField("Tags")
+    # Form for extending the movie details
     video_link = URLField("Video Link")
-
     submit = SubmitField("Submit")
 
 
 class RegisterForm(FlaskForm):
+    # Form for user registration
     email = StringField("Email", validators=[InputRequired(), Email()])
     password = PasswordField(
         "Password",
@@ -72,6 +74,7 @@ class RegisterForm(FlaskForm):
 
 
 class LoginForm(FlaskForm):
+    # Form for user login
     email = StringField("Email", validators=[InputRequired(), Email()])
     password = PasswordField("Password", validators=[InputRequired()])
     submit = SubmitField("Login")
